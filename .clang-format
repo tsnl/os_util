@@ -16,7 +16,7 @@ SeparateDefinitionBlocks: Always
 AllowShortBlocksOnASingleLine: Never
 AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: Never
-AllowShortLambdasOnASingleLine: None
+AllowShortLambdasOnASingleLine: Inline
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakBeforeMultilineStrings: true
 QualifierAlignment: Right
