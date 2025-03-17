@@ -2,8 +2,8 @@
 // If you make any changes here, please consider upstreaming them so that other projects can consistently follow the 
 // same style.
 {
-	"editor.tabSize": 4,
-	"editor.insertSpaces": false,
-	"editor.detectIndentation": false,
-	"editor.formatOnSave": true
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true
 }
