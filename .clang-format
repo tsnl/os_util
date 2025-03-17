@@ -23,8 +23,12 @@ QualifierAlignment: Right
 
 # Templates:
 BreakBeforeConceptDeclarations: Always
-AllowShortCompoundRequirementOnASingleLine: false
 AlwaysBreakTemplateDeclarations: true
+
+# Requires:
+AllowShortCompoundRequirementOnASingleLine: true
+IndentRequiresClause: false
+RequiresClausePosition: SingleLine
 
 # Type definitions:
 AllowShortEnumsOnASingleLine: false
