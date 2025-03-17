@@ -1,0 +1,9 @@
+# From `cpp_base`: do not edit this section to make rebasing easy:
+#
+
+/bazel-*
+/external
+/compile_commands.json
+
+# Others:
+#

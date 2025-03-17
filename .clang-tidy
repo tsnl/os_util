@@ -1,0 +1,5 @@
+---
+Checks: >         
+    clang-diagnostic-*,clang-analyzer-*,modernize-*,
+    readability-*,-readability-identifier-length,-readability-redundant-access-specifiers,-readability-implicit-bool-conversion,-readability-magic-numbers,
+    -misc-include-cleaner,
