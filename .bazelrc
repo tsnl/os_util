@@ -1,2 +1,6 @@
+# This file is a part of [tsnl/cpp_base](https://github.com/tsnl/cpp_base).
+# If you make any changes here, please consider upstreaming them so that other projects can consistently follow the same 
+# style.
+
 common --enable_bzlmod --noenable_workspace
 build --cxxopt=-std=c++20
