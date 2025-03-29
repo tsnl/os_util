@@ -9,5 +9,7 @@
 /external
 /compile_commands.json
 
+.DS_Store
+
 # Others:
 #
