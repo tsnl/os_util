@@ -57,7 +57,7 @@ AccessModifierOffset: -4
 EmptyLineBeforeAccessModifier: Always
 
 # Attributes:
-BreakAfterAttributes: Always
+BreakAfterAttributes: Never
 
 # Includes:
 IncludeBlocks: Regroup
