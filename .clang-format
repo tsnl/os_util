@@ -62,7 +62,7 @@ BreakAfterAttributes: Never
 # Includes:
 IncludeBlocks: Regroup
 IncludeCategories:
-  - Regex:           '^"gtest\/gtest.h"$'
+  - Regex:           '^["<]gtest\/gtest.h[">]$'
     Priority:        1000
   - Regex:           '^"[^\/"]*"$'
     Priority:        200
