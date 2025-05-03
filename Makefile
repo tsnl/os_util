@@ -1,3 +1,5 @@
+# NOTE: We use Bazel as the build system. This Makefile is just a wrapper for good tab completion in the shell.
+
 # cpp_base configuration: do not edit this section.
 MAKEFLAGS+=--always-make 	# we use bazel as the build system, so we want to always build. Equal to '.PHONY: *'.
 SHELL=/bin/bash
