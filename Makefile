@@ -12,7 +12,7 @@ SHELL=/bin/bash
 # cpp_base targets: do not edit this section.
 #
 
-default: test
+__default__: default
 
 compile_commands.json:
 	bazelisk run refresh_compile_commands
@@ -26,3 +26,5 @@ format:
 #
 # targets:
 #
+
+default: # TODO: define your targets here
