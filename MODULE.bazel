@@ -1,0 +1,24 @@
+module(name = "tsnl.todo")  # ----> set your module name here!
+
+#
+# from cpp_base: do not edit this section.
+#
+
+# Toolchain:
+bazel_dep(name = "rules_cc", version = "0.1.1")
+
+# Hedron's Compile Commands Extractor for Bazel
+# https://github.com/hedronvision/bazel-compile-commands-extractor
+bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
+git_override(
+    module_name = "hedron_compile_commands",
+    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
+    commit = "4f28899228fb3ad0126897876f147ca15026151e",
+)
+
+# test libraries:
+bazel_dep(name = "googletest", version = "1.16.0.bcr.1")
+
+#
+# rest:
+#
