@@ -12,10 +12,10 @@ common --enable_bzlmod --noenable_workspace
 common --enable_platform_specific_config
 
 # POSIX settings:
-build:linux --cxxopt=-std=c++23
-build:macos --cxxopt=-std=c++23
+build:linux --cxxopt=-std=c++23 --host_cxxopt=-std=c++23
+build:macos --cxxopt=-std=c++23 --host_cxxopt=-std=c++23
 
 # Windows-specific settings
-build:windows --cxxopt=/std:c++23
-build:windows --cxxopt=/Zc:preprocessor 
-build:windows --cxxopt=/EHsc
+build:windows --cxxopt=/std:c++23 --host_cxxopt=/std:c++23
+build:windows --cxxopt=/Zc:preprocessor --host_cxxopt=/Zc:preprocessor
+build:windows --cxxopt=/EHsc --host_cxxopt=/EHsc
