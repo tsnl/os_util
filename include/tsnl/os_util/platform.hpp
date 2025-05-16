@@ -1,0 +1,22 @@
+#pragma once
+
+#if defined(_WIN32) || defined(_WIN64)
+#define TSNL_PLATFORM_WIN32 1
+#define TSNL_PLATFORM_MACOS 0
+#define TSNL_PLATFORM_LINUX 0
+#elif defined(__APPLE__) || defined(__MACH__)
+#define TSNL_PLATFORM_WIN32 0
+#define TSNL_PLATFORM_MACOS 1
+#define TSNL_PLATFORM_LINUX 0
+#elif defined(__linux__)
+#define TSNL_PLATFORM_WIN32 0
+#define TSNL_PLATFORM_MACOS 0
+#define TSNL_PLATFORM_LINUX 1
+#else
+#define TSNL_PLATFORM_WIN32 0
+#define TSNL_PLATFORM_MACOS 0
+#define TSNL_PLATFORM_LINUX 0
+#endif
+
+#define TSNL_PLATFORM_POSIX (TSNL_PLATFORM_MACOS || TSNL_PLATFORM_LINUX)
+#define TSNL_PLATFORM_WINDOWS (TSNL_PLATFORM_WIN32)
