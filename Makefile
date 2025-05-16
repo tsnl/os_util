@@ -27,4 +27,7 @@ format:
 # targets:
 #
 
-default: # TODO: define your targets here
+default: test
+
+test:
+	bazelisk test test --cache_test_results=no

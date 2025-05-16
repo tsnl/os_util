@@ -1,4 +1,4 @@
-module(name = "tsnl.todo")  # ----> set your module name here!
+module(name = "tsnl.os_util")
 
 #
 # from cpp_base: do not edit this section.
@@ -22,3 +22,10 @@ bazel_dep(name = "googletest", version = "1.16.0.bcr.1")
 #
 # rest:
 #
+
+bazel_dep(name = "tsnl.log", version = "0.0.0")
+git_override(
+    module_name = "tsnl.log",
+    remote = "https://github.com/tsnl/log.git",
+    commit = "02807d7be49f226d635278eb2ff4469075ad54d5",
+)

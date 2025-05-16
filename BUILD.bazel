@@ -1,8 +1,39 @@
 load("@hedron_compile_commands//:refresh_compile_commands.bzl", "refresh_compile_commands")  # do not edit this line
 
 compile_commands_targets = [
-    # TODO: Add your targets here for inclusion in the compile_commands.json file.
+    "tsnl.os_util",
+    "test",
 ]
+
+base_deps = ["@tsnl.log"]
+
+#
+# Libraries:
+#
+
+cc_library(
+    name = "tsnl.os_util",
+    srcs = glob([
+        "src/tsnl/os_util/*.cpp",
+        "include/tsnl/os_util/*.hpp",
+    ]),
+    hdrs = glob(["include/tsnl/os_util.hpp"]),
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+    deps = base_deps,
+)
+
+cc_test(
+    name = "test",
+    srcs = glob(["test/tsnl/os_util/*.cpp"]),
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+    deps = base_deps + [
+        ":tsnl.os_util",
+        "@googletest//:gtest",
+        "@googletest//:gtest_main",
+    ],
+)
 
 #
 # from cpp_base: do not edit this section.
