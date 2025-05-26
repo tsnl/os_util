@@ -4,47 +4,47 @@
 #include <utility>
 
 #if TSNL_PLATFORM_WIN32
+#include <windows.h>
 #include <errhandlingapi.h>
 #include <fileapi.h>
 #include <winbase.h>
-#include <windows.h>
 
 namespace tsnl::os_util {
 
-memory_mapped_file::memory_mapped_file(std::filesystem::path const& file_path, access_mode mode) {
+memory_mapped_file::memory_mapped_file(std::filesystem::path const& file_path, uint32_t flags) {
     int desired_access = 0;
-    desired_access |= mode & access_mode::read ? GENERIC_READ : 0;
-    desired_access |= mode & access_mode::write ? GENERIC_WRITE : 0;
+    desired_access |= flags & flag::read ? GENERIC_READ : 0;
+    desired_access |= flags & flag::write ? GENERIC_WRITE : 0;
     if (!desired_access) {
-        log::fatal() << "No access mode specified for file: " << file_path.string();
+        log::fatal() << "No access flags specified for file: " << file_path.string();
         std::unreachable();
     }
 
-    CreateFileA(file_path.string().c_str(), desired_access, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+    auto file_handle = CreateFileA(file_path.string().c_str(), desired_access, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
     if (file_handle == INVALID_HANDLE_VALUE) {
         log::fatal() << "Failed to open file: " << file_path.string() << ": error: " << GetLastError();
         std::unreachable();
     }
 
     int64_t file_size;
-    bool file_size_ok = GetFileSizeEx(file_handle, (PLARGE_INTEGER)&length);
+    bool file_size_ok = GetFileSizeEx(file_handle, (PLARGE_INTEGER)&file_size);
     if (!file_size_ok) {
         log::fatal() << "Failed to get file size: " << file_path.string() << ": error: " << GetLastError();
         std::unreachable();
     }
 
     int protection = 0;
-    if (mode & access_mode::write) {
+    if (flags & flag::write) {
         protection |= PAGE_READWRITE;
-    } else if (mode & access_mode::read) {
+    } else if (flags & flag::read) {
         protection |= PAGE_READONLY;
     }
     if (!protection) {
-        log::fatal() << "No access mode specified for file: " << file_path.string();
+        log::fatal() << "No access flags specified for file: " << file_path.string();
         std::unreachable();
     }
 
-    if (mode & access_mode::commit) {
+    if (flags & flag::commit) {
         protection |= SEC_COMMIT;
     }
 
@@ -63,6 +63,7 @@ memory_mapped_file::memory_mapped_file(std::filesystem::path const& file_path, a
     file_handle_ = file_handle;
     file_mapping_object_handle_ = file_mapping_object_handle;
     mapping_base_address_ = ptr;
+    file_size_ = static_cast<size_t>(file_size);
 }
 
 memory_mapped_file::~memory_mapped_file() {
@@ -136,7 +137,7 @@ memory_mapped_file::memory_mapped_file(std::filesystem::path const& file_path, u
     } else if (flags & flag::write) {
         open_flags |= O_WRONLY;
     } else {
-        log::fatal() << "No access mode specified for file: " << file_path.string();
+        log::fatal() << "No access flags specified for file: " << file_path.string();
         std::unreachable();
     }
 
@@ -160,7 +161,7 @@ memory_mapped_file::memory_mapped_file(std::filesystem::path const& file_path, u
     prot |= flags & flag::read ? PROT_READ : 0;
     prot |= flags & flag::write ? PROT_WRITE : 0;
     if (!prot) {
-        log::fatal() << "No access mode specified for file: " << file_path.string();
+        log::fatal() << "No access flags specified for file: " << file_path.string();
         std::unreachable();
     }
 

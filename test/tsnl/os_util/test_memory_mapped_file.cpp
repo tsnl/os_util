@@ -30,9 +30,10 @@ TEST_F(memory_mapped_file_test, read_file) {
     }
 
     // Write bytes to a test file
-    std::ofstream ofs(file_path);
+    std::ofstream ofs(file_path, std::ios::binary);
     ASSERT_TRUE(ofs.is_open());
     ofs.write(reinterpret_cast<char*>(data.data()), data.size());
+    ofs.flush();
     ofs.close();
 
     // Map the file and check the contents
