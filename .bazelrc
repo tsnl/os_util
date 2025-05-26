@@ -16,6 +16,6 @@ build:linux --cxxopt=-std=c++23 --host_cxxopt=-std=c++23
 build:macos --cxxopt=-std=c++23 --host_cxxopt=-std=c++23
 
 # Windows-specific settings
-build:windows --cxxopt=/std:c++23 --host_cxxopt=/std:c++23
+build:windows --cxxopt=/std:c++23preview --host_cxxopt=/std:c++23preview
 build:windows --cxxopt=/Zc:preprocessor --host_cxxopt=/Zc:preprocessor
 build:windows --cxxopt=/EHsc --host_cxxopt=/EHsc
